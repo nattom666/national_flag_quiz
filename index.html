@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>国旗クイズ｜国旗を見て国名を当てるクイズ</title>
+<meta name="description" content="国旗をタップすると答えが出る、繰り返し遊べる国旗クイズ。易しい・普通・難しいの3つから選べます。世界197の国と地域を収録。漢字にはふりがな付き。">
+<link rel="canonical" href="https://nattom666.github.io/national_flag_quiz/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="国旗クイズ">
+<meta property="og:title" content="国旗クイズ｜国旗を見て国名を当てるクイズ">
+<meta property="og:description" content="国旗をタップすると答えが出る、繰り返し遊べる国旗クイズ。易しい・普通・難しいの3つから選べます。">
+<meta property="og:url" content="https://nattom666.github.io/national_flag_quiz/">
+<meta property="og:image" content="https://nattom666.github.io/national_flag_quiz/apple-touch-icon.png">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebSite",
+ "name": "国旗クイズ",
+ "url": "https://nattom666.github.io/national_flag_quiz/",
+ "description": "国旗をタップすると答えが出る、繰り返し遊べる国旗クイズ。易しい・普通・難しいの3つから選べます。世界197の国と地域を収録。",
+ "inLanguage": "ja"
+}
+</script>
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+:root{
+  --bg:#eaf4ff; --card:#fff; --ink:#26364a; --sub:#7a8ba1; --line:#d7e6f7;
+  --accent:#2f80ed; --accent-dark:#1b62c4; --ok:#3fa653; --mada:#f2994a;
+  --plate:#fdfdfd;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"Hiragino Maru Gothic ProN","ヒラギノ丸ゴ ProN",-apple-system,"BIZ UDPGothic","Meiryo",sans-serif;
+  line-height:1.7; -webkit-text-size-adjust:100%;
+  -webkit-tap-highlight-color:transparent;
+}
+ruby{ruby-align:center}
+rt{font-size:.42em; color:var(--sub); font-weight:normal; line-height:1.1}
+.actions button rt, .levels button[aria-pressed="true"] rt{color:rgba(255,255,255,.85)}
+.actions .hintbtn rt{color:var(--sub)}
+button{font-family:inherit; cursor:pointer}
+
+header{padding:14px 16px 6px; text-align:center}
+h1{margin:0; font-size:23px; letter-spacing:.04em}
+h1 .sub{display:block; font-size:12px; color:var(--sub); font-weight:normal; margin-top:6px}
+
+/* かんたん・ふつう・むずかしい のえらぶところ */
+.levels{display:flex; gap:8px; justify-content:center; padding:12px 16px 4px; flex-wrap:wrap}
+.levels button{
+  border:2px solid var(--line); background:#fff; color:var(--sub);
+  border-radius:999px; padding:7px 16px; font-size:15px; font-weight:bold;
+  transition:transform .08s;
+}
+.levels button .n{display:block; font-size:10px; font-weight:normal; margin-top:-2px}
+.levels button[aria-pressed="true"]{
+  background:var(--accent); border-color:var(--accent); color:#fff;
+}
+.levels button:active{transform:scale(.95)}
+
+main{max-width:560px; margin:0 auto; padding:8px 16px 24px}
+
+/* 国旗のカード。押すとこたえが出る */
+.card{
+  width:100%; background:var(--card); border:2px solid var(--line); border-radius:20px;
+  padding:16px; display:block; text-align:center; box-shadow:0 3px 0 var(--line);
+}
+.plate{
+  background:var(--plate); border:1px solid var(--line); border-radius:12px;
+  height:38vh; min-height:170px; max-height:280px;
+  display:flex; align-items:center; justify-content:center; overflow:hidden;
+}
+.plate img{max-width:100%; max-height:100%; display:block}
+.hint{
+  min-height:26px; margin-top:10px; font-size:14px; color:var(--sub);
+}
+.hint b{color:var(--accent); font-size:16px}
+
+/* こたえ */
+.answer{margin-top:10px}
+.answer .name{font-size:30px; font-weight:bold; letter-spacing:.02em; line-height:1.35}
+.answer .facts{margin-top:6px; font-size:14px; color:var(--sub)}
+.answer .facts span{display:inline-block; margin:0 6px}
+.speak{
+  margin-top:10px; border:2px solid var(--line); background:#fff; color:var(--accent);
+  border-radius:999px; padding:5px 16px; font-size:14px; font-weight:bold;
+}
+
+/* 下のボタン */
+.actions{display:flex; gap:10px; margin-top:14px}
+.actions button{
+  flex:1; border:none; border-radius:16px; padding:15px 8px;
+  font-size:19px; font-weight:bold; color:#fff;
+}
+.actions button:active{transform:translateY(2px)}
+.big{background:var(--accent); box-shadow:0 4px 0 var(--accent-dark)}
+.actions .hintbtn{
+  flex:0 0 auto; background:#fff; color:var(--accent); border:2px solid var(--line);
+  box-shadow:0 4px 0 var(--line); font-size:17px; padding:13px 18px;
+}
+.yes{background:var(--ok); box-shadow:0 4px 0 #2e7d3e}
+.no{background:var(--mada); box-shadow:0 4px 0 #c97a2f}
+
+.score{
+  margin-top:14px; text-align:center; font-size:14px; color:var(--sub);
+}
+.score b{color:var(--ink); font-size:17px}
+.score button{
+  margin-left:10px; border:1px solid var(--line); background:#fff; color:var(--sub);
+  border-radius:999px; padding:3px 12px; font-size:12px;
+}
+
+/* ずかん */
+.tabs{display:flex; gap:8px; justify-content:center; margin:18px 0 4px}
+.tabs button{
+  border:none; background:none; color:var(--sub); font-size:14px; font-weight:bold;
+  padding:6px 12px; border-radius:999px;
+}
+.tabs button[aria-pressed="true"]{background:#fff; color:var(--accent); box-shadow:0 1px 0 var(--line)}
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(96px,1fr)); gap:12px; margin-top:10px}
+.grid figure{margin:0; text-align:center}
+.grid .ph{
+  background:var(--plate); border:1px solid var(--line); border-radius:8px;
+  height:64px; display:flex; align-items:center; justify-content:center; overflow:hidden;
+}
+.grid img{max-width:100%; max-height:100%}
+.grid figcaption{font-size:12px; margin-top:4px; line-height:1.35}
+
+footer{
+  max-width:560px; margin:0 auto; padding:20px 16px 40px;
+  font-size:11px; color:var(--sub); line-height:1.8;
+}
+footer a{color:var(--sub)}
+footer h2{font-size:12px; margin:14px 0 4px; color:var(--ink)}
+[hidden]{display:none !important}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><ruby>国旗<rt>こっき</rt></ruby>クイズ
+    <span class="sub"><ruby>国旗<rt>こっき</rt></ruby>をタップすると<ruby>答<rt>こた</rt></ruby>えが<ruby>出<rt>で</rt></ruby>るよ</span>
+  </h1>
+</header>
+
+<div class="levels" id="levels" role="group" aria-label="難易度"></div>
+
+<main>
+  <!-- クイズ -->
+  <section id="quiz">
+    <button class="card" id="card" aria-live="polite">
+      <div class="plate"><img id="flag" alt="国旗"></div>
+      <div class="hint" id="hint"></div>
+      <div class="answer" id="answer" hidden>
+        <div class="name" id="name"></div>
+        <div class="facts" id="facts"></div>
+      </div>
+    </button>
+    <button class="speak" id="speak" hidden>🔊 <ruby>読<rt>よ</rt></ruby>み<ruby>上<rt>あ</rt></ruby>げる</button>
+
+    <div class="actions" id="beforeActions">
+      <button class="hintbtn" id="hintBtn">ヒント</button>
+      <button class="big" id="reveal"><ruby>答<rt>こた</rt></ruby>えを<ruby>見<rt>み</rt></ruby>る</button>
+    </div>
+    <div class="actions" id="afterActions" hidden>
+      <button class="yes" id="yes"><ruby>分<rt>わ</rt></ruby>かった！</button>
+      <button class="no" id="no">まだ</button>
+    </div>
+
+    <p class="score">
+      <ruby>正解<rt>せいかい</rt></ruby> <b id="ok">0</b> ／ <ruby>出題<rt>しゅつだい</rt></ruby> <b id="seen">0</b>
+      <button id="reset"><ruby>記録<rt>きろく</rt></ruby>を<ruby>消<rt>け</rt></ruby>す</button>
+    </p>
+  </section>
+
+  <!-- ずかん -->
+  <section id="book" hidden>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <div class="tabs" role="group" aria-label="画面">
+    <button id="tabQuiz" aria-pressed="true">クイズ</button>
+    <button id="tabBook" aria-pressed="false"><ruby>図鑑<rt>ずかん</rt></ruby></button>
+  </div>
+</main>
+
+<footer>
+  <p>
+    国旗の画像は<a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">ウィキメディア・コモンズ</a>のものです。
+    ほとんどはパブリックドメイン（誰でも自由に使えるもの）ですが、次のものは作者名の表示が決められています。
+  </p>
+  <h2>作者を表示する国旗</h2>
+  <ul id="credits"></ul>
+  <p id="counts"></p>
+</footer>
+
+<script src="data.js"></script>
+<script>
+"use strict";
+
+/* ------- むずかしさ。レベルは「以下ぜんぶ」を出す ------- */
+const LEVELS = [
+  {id:1, label:"<ruby>易<rt>やさ</rt></ruby>しい"},
+  {id:2, label:"<ruby>普通<rt>ふつう</rt></ruby>"},
+  {id:3, label:"<ruby>難<rt>むずか</rt></ruby>しい"},
+];
+const SAVE = "kokki.v1";
+
+const state = load();
+
+function load(){
+  try{
+    const s = JSON.parse(localStorage.getItem(SAVE) || "{}");
+    if(s && s.score && s.level) return s;
+  }catch(e){ /* こわれていたら作り直す */ }
+  return {level:1, score:{1:{ok:0,seen:0}, 2:{ok:0,seen:0}, 3:{ok:0,seen:0}}};
+}
+function save(){
+  try{ localStorage.setItem(SAVE, JSON.stringify(state)); }catch(e){}
+}
+
+/* 今のレベルで出す国 */
+function pool(){ return COUNTRIES.filter(c => c.level <= state.level); }
+
+/* ------- 出す順番。ふくろから1枚ずつ引き、空になったら入れ直す ------- */
+let bag = [], current = null, shown = false;
+
+function shuffle(a){
+  for(let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+function refill(){
+  bag = shuffle(pool().slice());
+  // 前と同じ国がすぐ続かないようにする
+  if(current && bag.length > 1 && bag[bag.length - 1] === current){
+    [bag[0], bag[bag.length - 1]] = [bag[bag.length - 1], bag[0]];
+  }
+}
+
+const $ = id => document.getElementById(id);
+const hasKanji = s => /[㐀-鿿]/.test(s);
+const esc = s => s.replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+/* 漢字にはふりがなを振る（子どもが漢字を覚えられるよう、ひらがなに開かない） */
+function ruby(kanji, yomi){
+  return `<ruby>${esc(kanji)}<rt>${esc(yomi)}</rt></ruby>`;
+}
+function nameHtml(c){
+  return hasKanji(c.name) ? ruby(c.name, c.yomi) : esc(c.name);
+}
+const REGION_HTML = {
+  "北アメリカ": ruby("北", "きた") + "アメリカ",
+  "南アメリカ": ruby("南", "みなみ") + "アメリカ",
+};
+function regionHtml(r){ return REGION_HTML[r] || esc(r); }
+function capitalHtml(c){
+  return c.capitalYomi ? ruby(c.capital, c.capitalYomi) : esc(c.capital);
+}
+
+function next(){
+  if(!bag.length) refill();
+  current = bag.pop();
+  shown = false;
+  $("flag").src = "flags/" + current.file;
+  $("flag").alt = "国旗";
+  $("answer").hidden = true;
+  $("speak").hidden = true;
+  $("hint").innerHTML = "ここを<ruby>押<rt>お</rt></ruby>すと<ruby>答<rt>こた</rt></ruby>え";
+  $("beforeActions").hidden = false;
+  $("afterActions").hidden = true;
+  preload();
+  window.scrollTo({top:0});
+}
+
+/* つぎの1枚を先に読んでおく（切りかわりのちらつきよけ） */
+function preload(){
+  if(!bag.length) return;
+  const img = new Image();
+  img.src = "flags/" + bag[bag.length - 1].file;
+}
+
+function reveal(){
+  if(shown) return;
+  shown = true;
+  const c = current;
+  $("name").innerHTML = nameHtml(c);
+  $("facts").innerHTML =
+    `<span>${regionHtml(c.region)}</span><span><ruby>首都<rt>しゅと</rt></ruby> ${capitalHtml(c)}</span>`;
+  $("answer").hidden = false;
+  $("hint").innerHTML = "";
+  $("flag").alt = c.name + "の国旗";
+  $("speak").hidden = !("speechSynthesis" in window);
+  $("beforeActions").hidden = true;
+  $("afterActions").hidden = false;
+}
+
+/* ヒントがわりに、こたえを見る前は地域だけ出す */
+function showRegion(){
+  if(shown) return;
+  $("hint").innerHTML = `<b>${regionHtml(current.region)}</b> の<ruby>国<rt>くに</rt></ruby>`;
+}
+
+function answered(ok){
+  const s = state.score[state.level];
+  s.seen++;
+  if(ok){
+    s.ok++;
+  }else if(bag.length >= 3){
+    // わからなかった国は、少し先にもう一度出す。ふくろの残りが少ないときは入れない
+    // （入れるとすぐ次に出てしまう。どのみち次の周でまた出る）
+    const at = bag.length - (3 + Math.floor(Math.random() * 6));
+    bag.splice(Math.max(0, at), 0, current);
+  }
+  save();
+  drawScore();
+  next();
+}
+
+function drawScore(){
+  const s = state.score[state.level];
+  $("ok").textContent = s.ok;
+  $("seen").textContent = s.seen;
+}
+
+function speak(){
+  if(!("speechSynthesis" in window)) return;
+  const u = new SpeechSynthesisUtterance(`${current.yomi}。首都は${current.capitalYomi || current.capital}。`);
+  u.lang = "ja-JP";
+  speechSynthesis.cancel();
+  speechSynthesis.speak(u);
+}
+
+/* ------- むずかしさのボタン ------- */
+function drawLevels(){
+  $("levels").innerHTML = LEVELS.map(l => {
+    const n = COUNTRIES.filter(c => c.level <= l.id).length;
+    return `<button data-level="${l.id}" aria-pressed="${l.id === state.level}">
+      ${l.label}<span class="n">${n}か国</span></button>`;
+  }).join("");
+  $("levels").querySelectorAll("button").forEach(b => {
+    b.onclick = () => {
+      state.level = Number(b.dataset.level);
+      save();
+      drawLevels();
+      drawScore();
+      drawBook();
+      refill();
+      next();
+    };
+  });
+}
+
+/* ------- ずかん ------- */
+function drawBook(){
+  $("grid").innerHTML = pool().map(c => `
+    <figure>
+      <div class="ph"><img src="flags/${c.file}" alt="${esc(c.name)}の国旗" loading="lazy"></div>
+      <figcaption>${nameHtml(c)}</figcaption>
+    </figure>`).join("");
+}
+
+function tab(which){
+  const q = which === "quiz";
+  $("quiz").hidden = !q;
+  $("book").hidden = q;
+  $("tabQuiz").setAttribute("aria-pressed", String(q));
+  $("tabBook").setAttribute("aria-pressed", String(!q));
+}
+
+/* ------- こっきの出どころ（パブリックドメインでないものだけ出す） ------- */
+function drawCredits(){
+  const need = COUNTRIES.filter(c => c.license && !/public domain|^CC0/i.test(c.license));
+  $("credits").innerHTML = need.map(c => {
+    const url = "https://commons.wikimedia.org/wiki/File:" +
+      encodeURIComponent(c.src.replace(/ /g, "_"));
+    const who = c.artist ? esc(c.artist) + "／" : "";
+    return `<li>${esc(c.name)} … ${who}${esc(c.license)}
+      <a href="${url}" target="_blank" rel="noopener">コモンズ</a></li>`;
+  }).join("");
+  $("counts").textContent =
+    `世界の${COUNTRIES.length}の国と地域を出しています。`;
+}
+
+/* ------- つなぎこみ ------- */
+$("card").onclick = reveal;
+$("reveal").onclick = reveal;
+$("hintBtn").onclick = showRegion;
+$("speak").onclick = speak;
+$("yes").onclick = () => answered(true);
+$("no").onclick = () => answered(false);
+$("reset").onclick = () => {
+  if(!confirm("この難易度（なんいど）の記録（きろく）を消（け）しますか？")) return;
+  state.score[state.level] = {ok:0, seen:0};
+  save();
+  drawScore();
+};
+$("tabQuiz").onclick = () => tab("quiz");
+$("tabBook").onclick = () => tab("book");
+document.addEventListener("keydown", e => {
+  if(e.key === " " || e.key === "Enter"){ e.preventDefault(); shown ? answered(true) : reveal(); }
+});
+
+drawLevels();
+drawScore();
+drawBook();
+drawCredits();
+refill();
+next();
+</script>
+</body>
+</html>

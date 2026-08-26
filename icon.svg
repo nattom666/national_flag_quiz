@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- こっきクイズのアイコン。はためく旗と「？」。iOS が角を丸くするので角丸は付けない -->
+  <rect width="512" height="512" fill="#2f80ed"/>
+  <!-- ポール -->
+  <rect x="112" y="96" width="26" height="336" rx="13" fill="#ffffff"/>
+  <!-- はためく旗（上下の辺を波にする） -->
+  <path d="M138 128 C 214 92, 290 176, 400 132 L 400 268 C 290 312, 214 228, 138 264 Z" fill="#ffd23f"/>
+  <path d="M138 128 C 214 92, 290 176, 400 132 L 400 178 C 290 222, 214 138, 138 174 Z" fill="#ff6b57"/>
+  <!-- ？ -->
+  <text x="272" y="228" font-family="Hiragino Maru Gothic ProN, Helvetica, sans-serif"
+        font-size="150" font-weight="bold" text-anchor="middle" fill="#26364a">?</text>
+</svg>
