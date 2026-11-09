@@ -1,5 +1,5 @@
 // build-data.py が作っている。手で編集しない。
-// 国の数: 197
+// 国の数: 199
 const COUNTRIES = [
   {name: "日本", yomi: "にほん", capital: "東京", capitalYomi: "とうきょう", region: "アジア", level: 1, file: "japan.png", src: "Flag of Japan.svg", license: "Public domain", artist: "Various"},
   {name: "中国", yomi: "ちゅうごく", capital: "北京", capitalYomi: "ペキン", region: "アジア", level: 1, file: "china.png", src: "Flag of the People's Republic of China.svg", license: "Public domain", artist: "Zeng Liansong"},
@@ -38,7 +38,7 @@ const COUNTRIES = [
   {name: "クウェート", yomi: "クウェート", capital: "クウェート", capitalYomi: "", region: "アジア", level: 3, file: "kuwait.png", src: "Flag of Kuwait.svg", license: "Public domain", artist: ""},
   {name: "バーレーン", yomi: "バーレーン", capital: "マナーマ", capitalYomi: "", region: "アジア", level: 3, file: "bahrain.png", src: "Flag of Bahrain.svg", license: "Public domain", artist: "Source: Drawn by SKopp, rewritten by Zscout370"},
   {name: "オマーン", yomi: "オマーン", capital: "マスカット", capitalYomi: "", region: "アジア", level: 3, file: "oman.png", src: "Flag of Oman.svg", license: "OGL-om 1.0", artist: ""},
-  {name: "イエメン", yomi: "イエメン", capital: "サヌア", capitalYomi: "", region: "アジア", level: 3, file: "yemen.png", src: "Flag of Yemen.svg", license: "CC BY-SA 4.0", artist: "愛喝奶茶"},
+  {name: "イエメン", yomi: "イエメン", capital: "サヌア", capitalYomi: "", region: "アジア", level: 3, file: "yemen.png", src: "Flag of Yemen.svg", license: "Public domain", artist: "Nightstallion et al., see File history below for details."},
   {name: "イラク", yomi: "イラク", capital: "バグダッド", capitalYomi: "", region: "アジア", level: 2, file: "iraq.png", src: "Flag of Iraq.svg", license: "Public domain", artist: ""},
   {name: "イラン", yomi: "イラン", capital: "テヘラン", capitalYomi: "", region: "アジア", level: 2, file: "iran.png", src: "Flag of Iran.svg", license: "Public domain", artist: "SVG file: SiBr4Designer: Hamid NadimiConstruction: ISIRI"},
   {name: "イスラエル", yomi: "イスラエル", capital: "エルサレム", capitalYomi: "", region: "アジア", level: 2, file: "israel.png", src: "Flag of Israel.svg", license: "Public domain", artist: "Israel Belkind and Fanny Abramovitch (original) “The Provisional Council of State Proclamation of the Flag of the State of Israel” of 25 Tishrei 5709 (28 October 1948) provides the official specification for the design of the Israeli flag. The color of the Magen David and the stripes of the Israeli flag is not precisely specified by the above legislation. The color depicted in the current version of the image is typical of flags used in Israel today, although individual flags can and do vary. The flag legislation officially specifies dimensions of 220 cm × 160 cm. However, the sizes of actual flags vary (although the aspect ratio is usually retained)."},
@@ -83,7 +83,7 @@ const COUNTRIES = [
   {name: "アルバニア", yomi: "アルバニア", capital: "ティラナ", capitalYomi: "", region: "ヨーロッパ", level: 3, file: "albania.png", src: "Flag of Albania.svg", license: "Public domain", artist: "Sadik Kaceli"},
   {name: "コソボ", yomi: "コソボ", capital: "プリシュティナ", capitalYomi: "", region: "ヨーロッパ", level: 3, file: "kosovo.png", src: "Flag of Kosovo.svg", license: "Public domain", artist: "Cradel (current version), earlier version by Ningyou"},
   {name: "ウクライナ", yomi: "ウクライナ", capital: "キーウ", capitalYomi: "", region: "ヨーロッパ", level: 2, file: "ukraine.png", src: "Flag of Ukraine.svg", license: "Public domain", artist: "Government of Ukraine"},
-  {name: "ベラルーシ", yomi: "ベラルーシ", capital: "ミンスク", capitalYomi: "", region: "ヨーロッパ", level: 3, file: "belarus.png", src: "Flag of Belarus.svg", license: "Public domain", artist: ""},
+  {name: "ベラルーシ", yomi: "ベラルーシ", capital: "ミンスク", capitalYomi: "", region: "ヨーロッパ", level: 3, file: "belarus.png", src: "Flag of Belarus.svg", license: "Public domain", artist: "Nikolai Gusev"},
   {name: "ロシア", yomi: "ロシア", capital: "モスクワ", capitalYomi: "", region: "ヨーロッパ", level: 1, file: "russia.png", src: "Flag of Russia.svg", license: "Public domain", artist: "Peter the Great"},
   {name: "リトアニア", yomi: "リトアニア", capital: "ビリニュス", capitalYomi: "", region: "ヨーロッパ", level: 3, file: "lithuania.png", src: "Flag of Lithuania.svg", license: "Public domain", artist: "Original: Jonas Basanavičius, Tadas Daugirdas and Antanas Žmuidzinavičius Vector: SKopp The SVG code is valid. This flag was created with a text editor.Previous version had been created with Inkscape (1930 bytes) f now 14.15% of previous size Please do not replace the simplified code of this file with a version created with Inkscape or any other graphical vector graphics editor"},
   {name: "ラトビア", yomi: "ラトビア", capital: "リガ", capitalYomi: "", region: "ヨーロッパ", level: 3, file: "latvia.png", src: "Flag of Latvia.svg", license: "Public domain", artist: "Original: Ansis Cīrulis Vector: SKopp"},
@@ -151,7 +151,7 @@ const COUNTRIES = [
   {name: "コモロ", yomi: "コモロ", capital: "モロニ", capitalYomi: "", region: "アフリカ", level: 3, file: "comoros.png", src: "Flag of the Comoros.svg", license: "Public domain", artist: "Original: Comoros; Vector: see file history"},
   {name: "アメリカ", yomi: "アメリカ", capital: "ワシントンD.C.", capitalYomi: "", region: "北アメリカ", level: 1, file: "united-states.png", src: "Flag of the United States.svg", license: "Public domain", artist: "Uploaded by Dbenbenn; edited by users such as Zscout370, Jacobolus, Indolences, and Technion."},
   {name: "カナダ", yomi: "カナダ", capital: "オタワ", capitalYomi: "", region: "北アメリカ", level: 1, file: "canada.png", src: "Flag of Canada.svg", license: "Public domain", artist: "Created by George F. G. Stanley / E Pluribus Anthony / User:Mzajac"},
-  {name: "メキシコ", yomi: "メキシコ", capital: "メキシコシティ", capitalYomi: "", region: "北アメリカ", level: 1, file: "mexico.png", src: "Flag of Mexico.svg", license: "Public domain", artist: "Alex Covarrubias, 9 April 2006. Based on the arms by Juan Manuel Gabino Villascán."},
+  {name: "メキシコ", yomi: "メキシコ", capital: "メキシコシティ", capitalYomi: "", region: "北アメリカ", level: 1, file: "mexico.png", src: "Flag of Mexico.svg", license: "Public domain", artist: "Omar Alejandro Covarrubias Neri, 9 April 2006. Based on the 1968 arms by Francisco Eppens Helguera and Juan Manuel Gabino Villascán."},
   {name: "グアテマラ", yomi: "グアテマラ", capital: "グアテマラシティ", capitalYomi: "", region: "北アメリカ", level: 3, file: "guatemala.png", src: "Flag of Guatemala.svg", license: "Public domain", artist: "K21edgo"},
   {name: "ベリーズ", yomi: "ベリーズ", capital: "ベルモパン", capitalYomi: "", region: "北アメリカ", level: 3, file: "belize.png", src: "Flag of Belize.svg", license: "Public domain", artist: "Caleb Moore"},
   {name: "エルサルバドル", yomi: "エルサルバドル", capital: "サンサルバドル", capitalYomi: "", region: "北アメリカ", level: 3, file: "el-salvador.png", src: "Flag of El Salvador.svg", license: "Public domain", artist: ""},
@@ -190,12 +190,14 @@ const COUNTRIES = [
   {name: "フィジー", yomi: "フィジー", capital: "スバ", capitalYomi: "", region: "オセアニア", level: 2, file: "fiji.png", src: "Flag of Fiji.svg", license: "Public domain", artist: "Tessa Mackenzie"},
   {name: "ソロモン諸島", yomi: "ソロモンしょとう", capital: "ホニアラ", capitalYomi: "", region: "オセアニア", level: 3, file: "solomon-islands.png", src: "Flag of the Solomon Islands.svg", license: "Public domain", artist: "User:SKopp"},
   {name: "バヌアツ", yomi: "バヌアツ", capital: "ポートビラ", capitalYomi: "", region: "オセアニア", level: 3, file: "vanuatu.png", src: "Flag of Vanuatu.svg", license: "Public domain", artist: "Kalontas Mahlon"},
-  {name: "サモア", yomi: "サモア", capital: "アピア", capitalYomi: "", region: "オセアニア", level: 3, file: "samoa.png", src: "Flag of Samoa.svg", license: "Public domain", artist: "Original: Malietoa Tanumafili II and Tupua Tamasese Meaʻole Vector: See the file history below, for details."},
+  {name: "サモア", yomi: "サモア", capital: "アピア", capitalYomi: "", region: "オセアニア", level: 3, file: "samoa.png", src: "Flag of Samoa.svg", license: "Public domain", artist: "Original: Malietoa Tanumafili II and Tupua Tamasese Meaʻole Vector: See the file history below for details."},
   {name: "トンガ", yomi: "トンガ", capital: "ヌクアロファ", capitalYomi: "", region: "オセアニア", level: 3, file: "tonga.png", src: "Flag of Tonga.svg", license: "Public domain", artist: "Uelingatoni Ngu Tupoumalohi"},
   {name: "キリバス", yomi: "キリバス", capital: "タラワ", capitalYomi: "", region: "オセアニア", level: 3, file: "kiribati.png", src: "Flag of Kiribati.svg", license: "Public domain", artist: "User:Hanzlan"},
   {name: "ツバル", yomi: "ツバル", capital: "フナフティ", capitalYomi: "", region: "オセアニア", level: 3, file: "tuvalu.png", src: "Flag of Tuvalu.svg", license: "Public domain", artist: "Unknown authorUnknown author"},
   {name: "ナウル", yomi: "ナウル", capital: "ヤレン", capitalYomi: "", region: "オセアニア", level: 3, file: "nauru.png", src: "Flag of Nauru.svg", license: "Public domain", artist: "User:Skimel"},
   {name: "パラオ", yomi: "パラオ", capital: "ンゲルルムッド", capitalYomi: "", region: "オセアニア", level: 3, file: "palau.png", src: "Flag of Palau.svg", license: "Public domain", artist: "Original: John Blau Skebong Vector: Nightstallion"},
   {name: "マーシャル諸島", yomi: "マーシャルしょとう", capital: "マジュロ", capitalYomi: "", region: "オセアニア", level: 3, file: "marshall-islands.png", src: "Flag of the Marshall Islands.svg", license: "Public domain", artist: "No machine-readable author provided. SKopp assumed (based on copyright claims)."},
-  {name: "ミクロネシア連邦", yomi: "ミクロネシアれんぽう", capital: "パリキール", capitalYomi: "", region: "オセアニア", level: 3, file: "federated-states-of-micronesia.png", src: "Flag of the Federated States of Micronesia.svg", license: "Public domain", artist: ""}
+  {name: "ミクロネシア連邦", yomi: "ミクロネシアれんぽう", capital: "パリキール", capitalYomi: "", region: "オセアニア", level: 3, file: "federated-states-of-micronesia.png", src: "Flag of the Federated States of Micronesia.svg", license: "Public domain", artist: ""},
+  {name: "クック諸島", yomi: "クックしょとう", capital: "アバルア", capitalYomi: "", region: "オセアニア", level: 3, file: "cook-islands.png", src: "Flag of the Cook Islands.svg", license: "Public domain", artist: ""},
+  {name: "ニウエ", yomi: "ニウエ", capital: "アロフィ", capitalYomi: "", region: "オセアニア", level: 3, file: "niue.png", src: "Flag of Niue.svg", license: "Public domain", artist: "SKopp"}
 ];
